@@ -14,31 +14,27 @@
 /* ************************************************************ */
 
 /*
-** RETORNAR A DIFERENCA ENTRE DUAS STRING DENTRO DE SEUS PRIMEIROS 'n' CARATERES
-*/
-
-/*
-** VERIFIQUE A DIFERENCA ENTRE MEMCPY E MEMMOVE
+** RETORNAR A PRIMEIRA OCORRENCIA DE UM CARACTERE DENTRO DOS PRIMEROS 'n' CARA\
+** TERES DE UMA STRING
 */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int			i;
-	char		*cd;
-	const char	*cs;
+	size_t	i;
+	char	*src;
 
 	i = 0;
-	cd = (char *)dest;
-	cs = (char *)src;
-	if (cd == cs)
-		return (NULL);
-	while (n > 0)
+	src = (char *)s;
+/*	enquanto nosso 'n' for diferente de 0 iremos permanecer buscando o caracte\ re passado como parametro em nosso source */
+	while (n--)
 	{
-		cd[i] = cs[i];
+		if (src[i] == c)
+/*	iremos retornar nosso source a partir da primeira ocorrencia de nosso cara\ tere passado como parametro */
+			return (src + i);
 		i++;
-		n--;
 	}
-	return (cd);
+/*	caso o caractere passado como parametro nao for encontrado, ou 'n' chegue a 0 sem encontrar nosso caractere passado como parametro, iremos retornar 0 */
+	return (0);
 }

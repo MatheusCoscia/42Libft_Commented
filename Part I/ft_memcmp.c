@@ -17,28 +17,31 @@
 ** RETORNAR A DIFERENCA ENTRE DUAS STRING DENTRO DE SEUS PRIMEIROS 'n' CARATERES
 */
 
-/*
-** VERIFIQUE A DIFERENCA ENTRE MEMCPY E MEMMOVE
-*/
-
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int			i;
-	char		*cd;
-	const char	*cs;
+	size_t	i;
+	char	*joao;
+	char	*maria;
 
 	i = 0;
-	cd = (char *)dest;
-	cs = (char *)src;
-	if (cd == cs)
-		return (NULL);
-	while (n > 0)
+	joao = (char *)s1;
+	maria = (char *)s2;
+/*	enquanto 'n' for diferente de 0 e nossa string 1 for diferente da string 2 iremos permanecer no loop */
+	while (n--)
 	{
-		cd[i] = cs[i];
+		if (joao[i] != maria[i])
+/*	iremos retornar a diferenca entre s1 e s2 ~#consultar valores abaixo */
+			return ((unsigned char) joao[i] - (unsigned char) maria[i]);
 		i++;
-		n--;
 	}
-	return (cd);
+	return (0);
 }
+
+/*
+	os valores retornados devarao ser:
+	se s1 > s2 | retornaremos um valor positivo
+	se s1 < s2 | retornaremos um valor negativo
+	se s1 = s2 | retornaremos 0
+*/
