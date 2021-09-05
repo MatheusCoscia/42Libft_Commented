@@ -14,7 +14,7 @@
 /* ************************************************************ */
 
 /*
-** CONVERTER UM CARACTERE PARA UM CARACTERE DO TIPO INT
+** CONVERTER UM CARACTERE DO TIPO CHAR PARA UM CARACTERE DO TIPO INT
 */
 
 #include "libft.h"

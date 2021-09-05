@@ -14,77 +14,44 @@
 /* ************************************************************ */
 
 /*
-** ESCREVER UMA STRING
+** CONVERTER CARACTERES DO TIPO INT PARA CARACTERES DO TIPO CHAR E ESCREVE-LOS
 */
 
 #include "libft.h"
 
-char	florentina(char const *set, char c)
+/*	atraves da recursividade iremos escrever cada caractere de 'n' apos conver\
+te-lo de int para char */
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	cont;
-	int		find;
-
-	i = 0;
-	cont = 0;
-	find = 0;
-	while (set[i] != '\0')
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+/*	caso 'n' seja negativo iremos retorna-lo como positivo e escrever o sinal de negativo */
+	else if (n < 0)
 	{
-		if (set[i] == c && find == 1)
-			find = 0;
-		if (set[i] != c && find == 0)
-		{
-			find = 1;
-			cont++;
-		}
-		i++;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n * -1, fd);
 	}
-	return (cont);
+/*	converter nosso caractere de int para char e escreve-lo */
+	else if (n >= 0 && n <= 9)
+		ft_putchar_fd(n + 48, fd);
+/*	caso 'n' possua mais de um caractere */
+	else
+	{
+/*	retornar o primeiro caractere atraves da recursão */
+		ft_putnbr_fd(n / 10, fd);
+/*	retornar os caracteres adajacentes ate que todos tenham sido escritos */
+		ft_putnbr_fd(n % 10, fd);
+	}
 }
 
-char	*ft_strndup(const char *s, size_t n)
-{
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	if (s == 0)
-		return (0);
-	str = (char *)malloc(sizeof(char) * n + 1);
-	while (s[i] != '\0' && i < n)
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	int		start;
-	int		end;
-	char	**str;
-
-	str = (char **)malloc(sizeof(char *) * (florentina(s, c) + 1));
-	if (str == NULL)
-		return (NULL);
-	end = 0;
-	i = 0;
-	while (s[end] != '\0')
-	{
-		while (s[end] == c)
-			end++;
-		start = end;
-		while (s[end] != '\0' && s[end] != c)
-			end++;
-		if (end > start)
-		{
-			str[i] = ft_strndup(s + start, end - start);
-			i++;
-		}
-	}
-	str[i] = NULL;
-	return (str);
-}
+/*
+	Como funciona a recursividade de nossa funcao caso 'n' contenha mais de um caractere?
+	Vamos supor que 'n' seja igual a 589463...
+	n = 589463 / 10 = 5
+	n = 589463 % 10 = 89463
+	~recursão
+	n = 5							n = 89463
+	ft_putchar_fd(n + 48, fd)		n = 89463 / 10 = 8
+									n = 89463 % 10 = 9463
+	~recursão...
+*/
