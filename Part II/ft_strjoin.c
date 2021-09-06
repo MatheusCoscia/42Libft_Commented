@@ -14,26 +14,38 @@
 /* ************************************************************ */
 
 /*
-** RETORNAR NOSSA STRING NA PRIMEIRA OCORRENCIA DE UM CARACTERE PASSADO COMO PA\
-** RAMETRO
+** CONCATENAR DUAS STRINGS
 */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *src, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
 	i = 0;
-	while (src[i] != '\0')
+	j = 0;
+/*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' em sua totalidade */
+	str = (char *)malloc(sizeof(char) * ((*s1) + (*s2)));
+	if (str == 0)
+		return (0);
+/*	copiar a primeira string em sua totalidade para nossa nova string */
+	while (s1[j] != '\0')
 	{
-/*	quando nossa string atingir o caractere 'c' iremos retornar o momento em que isso ocorre */
-		if (src[i] == (char)c)
-			return ((char *)src + i);
+		str[i] = s1[j];
 		i++;
+		j++;
 	}
-/*	garantir que retornaremos nossa string ao atingir o caractere 'c' */
-	if (src[i] == (char)c)
-		return ((char *)src + i);
-	return (0);
+	j = 0;
+/*	copiar a segunda string em sua totalidade para nossa nova string */
+	while (s2[j] != '\0')
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
 }

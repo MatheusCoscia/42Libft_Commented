@@ -14,26 +14,19 @@
 /* ************************************************************ */
 
 /*
-** RETORNAR NOSSA STRING NA PRIMEIRA OCORRENCIA DE UM CARACTERE PASSADO COMO PA\
-** RAMETRO
+** ITERA UMA STRING A UMA FUNCAO
 */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *src, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (s[i] != '\0')
 	{
-/*	quando nossa string atingir o caractere 'c' iremos retornar o momento em que isso ocorre */
-		if (src[i] == (char)c)
-			return ((char *)src + i);
+		f(i, s + i);
 		i++;
 	}
-/*	garantir que retornaremos nossa string ao atingir o caractere 'c' */
-	if (src[i] == (char)c)
-		return ((char *)src + i);
-	return (0);
 }

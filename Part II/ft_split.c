@@ -21,7 +21,7 @@
 #include "libft.h"
 
 /*	funcao para identificar a quantidade de caracteres finais de nossa string */
-int	ft_strfind(char const *set, char c)
+int	ft_findchar(char const *set, char c)
 {
 	size_t	i;
 	size_t	cont;
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c)
 	char	**str;
 
 /*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' apos cada divisao */
-	str = (char **)malloc(sizeof(char *) * (ft_strfind(s, c) + 1));
+	str = (char **)malloc(sizeof(char *) * (ft_findchar(s, c) + 1));
 	if (str == NULL)
 		return (NULL);
 	end = 0;
@@ -87,7 +87,7 @@ char	**ft_split(char const *s, char c)
 			end++;
 		if (end > start)
 		{
-/*	 */
+/*	copiar a string que nao contenha o caractere 'c', fazendo assim com que ela seja dividida */
 			str[i] = ft_strndup(s + start, end - start);
 			i++;
 		}

@@ -14,27 +14,27 @@
 /* ************************************************************ */
 
 /*
-**
+** DUPLICAR UMA STRING
 */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	size_t	n;
+	int		i;
+	char	*str;
 
 	i = 0;
-	n = 0;
-	while (dest[n] && n < size)
-		n++;
-	i = n;
-	while (src[n - i] && n + 1 < size)
+	if (s == 0)
+		return (0);
+/*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' em sua totalidade */
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	while (s[i] != '\0')
 	{
-		dest[n] = src[n - i];
-		n++;
+/*	copiar cada caractere de uma string para outra */
+		str[i] = s[i];
+		i++;
 	}
-	if (i < size)
-		dest[n] = '\0';
-	return (i + ft_strlen(src));
+	str[i] = '\0';
+	return (str);
 }

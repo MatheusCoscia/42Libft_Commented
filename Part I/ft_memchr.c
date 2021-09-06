@@ -22,15 +22,15 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
-	char	*src;
+	size_t			i;
+	unsigned char	*src;
 
 	i = 0;
-	src = (char *)s;
+	src = (unsigned char *)s;
 /*	enquanto nosso 'n' for diferente de 0 iremos permanecer buscando o caracte\ re passado como parametro em nosso source */
 	while (n--)
 	{
-		if (src[i] == c)
+		if (src[i] == (unsigned char)c)
 /*	iremos retornar nosso source a partir da primeira ocorrencia de nosso cara\ tere passado como parametro */
 			return (src + i);
 		i++;
