@@ -14,34 +14,36 @@
 /* ************************************************************ */
 
 /*
-** ESCREVER UMA STRING
+** DIVIDIR UMA STRING SEMPRE QUE HOUVER A OCORRENCIA DE UM CARACTERE 'c' PASSADO
+** COMO PARAMETRO
 */
 
 #include "libft.h"
 
-char	florentina(char const *set, char c)
+/*	funcao para identificar a quantidade de caracteres finais de nossa string */
+int	ft_strfind(char const *set, char c)
 {
 	size_t	i;
 	size_t	cont;
-	int		find;
 
 	i = 0;
 	cont = 0;
-	find = 0;
 	while (set[i] != '\0')
 	{
-		if (set[i] == c && find == 1)
-			find = 0;
-		if (set[i] != c && find == 0)
-		{
-			find = 1;
+/*	dentro de nossa string temos que procurar por um caractere que seja difer\
+ente do caractere 'c' passado como parametro  */
+		while (set[i] == c)
+			i++;
+/*	caso o caractere encontrado seja diferente de 'c' e tambem diferente do fi\
+nal da palavra iremos incrimentar nosso contador */
+		if (set[i] != '\0')
 			cont++;
-		}
 		i++;
 	}
 	return (cont);
 }
 
+/*	funcao para duplicar nossa string ~#conferir ft_strdup */
 char	*ft_strndup(const char *s, size_t n)
 {
 	size_t	i;
@@ -67,20 +69,25 @@ char	**ft_split(char const *s, char c)
 	int		end;
 	char	**str;
 
-	str = (char **)malloc(sizeof(char *) * (florentina(s, c) + 1));
+/*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' apos cada divisao */
+	str = (char **)malloc(sizeof(char *) * (ft_strfind(s, c) + 1));
 	if (str == NULL)
 		return (NULL);
 	end = 0;
 	i = 0;
 	while (s[end] != '\0')
 	{
+/*	encontrar a primeira ocorrencia de 'c' em nossa string 's' */
 		while (s[end] == c)
 			end++;
+/*	definir a posicao inicial em que 's' sera duplicado */
 		start = end;
+/*	encontrar a ultima ocorrencia de 'c' em nossa string 's' */
 		while (s[end] != '\0' && s[end] != c)
 			end++;
 		if (end > start)
 		{
+/*	 */
 			str[i] = ft_strndup(s + start, end - start);
 			i++;
 		}

@@ -14,27 +14,26 @@
 /* ************************************************************ */
 
 /*
-**
+** RETORNAR NOSSA STRING NA PRIMEIRA OCORRENCIA DE UM CARACTERE PASSADO COMO PA\
+** RAMETRO
 */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strchr(const char *src, int c)
 {
 	size_t	i;
-	size_t	n;
 
 	i = 0;
-	n = 0;
-	while (dest[n] && n < size)
-		n++;
-	i = n;
-	while (src[n - i] && n + 1 < size)
+	while (src[i] != '\0')
 	{
-		dest[n] = src[n - i];
-		n++;
+/*	quando nossa string atingir o caractere 'c' iremos retornar o momento em que isso ocorre */
+		if (src[i] == c)
+			return ((char *)src + i);
+		i++;
 	}
-	if (i < size)
-		dest[n] = '\0';
-	return (i + ft_strlen(src));
+/*	garantir que retornaremos nossa string ao atingir o caractere 'c' */
+	if (src[i] == c)
+		return ((char *)src + i);
+	return (0);
 }

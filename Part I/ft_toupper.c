@@ -14,27 +14,14 @@
 /* ************************************************************ */
 
 /*
-**
+** CONVERTER UM CARACTERE MINUSCULO PARAM AIUSCULO
 */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+int	ft_toupper(char c)
 {
-	size_t	i;
-	size_t	n;
-
-	i = 0;
-	n = 0;
-	while (dest[n] && n < size)
-		n++;
-	i = n;
-	while (src[n - i] && n + 1 < size)
-	{
-		dest[n] = src[n - i];
-		n++;
-	}
-	if (i < size)
-		dest[n] = '\0';
-	return (i + ft_strlen(src));
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
 }

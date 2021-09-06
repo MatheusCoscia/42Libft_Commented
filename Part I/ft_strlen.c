@@ -14,27 +14,20 @@
 /* ************************************************************ */
 
 /*
-**
+** CONTAR A QUANTIDADE DE CARACTERES DE UMA STRING
 */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	size_t	n;
 
 	i = 0;
-	n = 0;
-	while (dest[n] && n < size)
-		n++;
-	i = n;
-	while (src[n - i] && n + 1 < size)
-	{
-		dest[n] = src[n - i];
-		n++;
-	}
-	if (i < size)
-		dest[n] = '\0';
-	return (i + ft_strlen(src));
+/*	enquanto minha string 's' nao chegar ao fim iremos incrementar nosso conta\
+dor 'i' */
+	while (s[i] != 0)
+		i++;
+/*	nosso contador 'i' possui o tamanho de nossa string */
+	return (i);
 }

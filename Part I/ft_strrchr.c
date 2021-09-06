@@ -14,27 +14,23 @@
 /* ************************************************************ */
 
 /*
-**
+** RETORNAR NOSSA STRING NA ULTIMA OCORRENCIA DE UM CARACTERE PASSADO COMO PA\
+** RAMETRO
 */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strrchr(const char *src, int c)
 {
-	size_t	i;
-	size_t	n;
+	int	i;
 
-	i = 0;
-	n = 0;
-	while (dest[n] && n < size)
-		n++;
-	i = n;
-	while (src[n - i] && n + 1 < size)
+/*	descobrir o tamanho total de nossa string para que a partir de seu ultimo caractere possamos procurar uma ocorrencia de 'c' */
+	i = ft_strlen(src);
+	while (i >= 0)
 	{
-		dest[n] = src[n - i];
-		n++;
+		if (src[i] == c)
+			return ((char *)src + i);
+		i--;
 	}
-	if (i < size)
-		dest[n] = '\0';
-	return (i + ft_strlen(src));
+	return (0);
 }
