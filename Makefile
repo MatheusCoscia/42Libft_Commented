@@ -74,11 +74,11 @@ $(NAME):	$(OBJS)
 clean:
 	rm -rf $(OBJS)
 
-#	* deletar a forca todos os arquivos .a criados por nosso makefile
+#	* deletar a forca todos os arquivos .o criado e o arquivo .a criado
 fclean: clean
 	rm -f $(NAME)
 
-#	* deletar a forca todos os arquivos criados por nosso makefile
+#	* deletar a forca todos os arquivos .o criado e o arquivo .a criado e apos recompliar meus arquivos
 re:	fclean all
 
 #	* impedir que nosso programa deixe de funcionar caso exista alguma pasta ou\
