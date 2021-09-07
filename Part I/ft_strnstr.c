@@ -30,6 +30,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return ((char *) big);
 	if (len == 0)
 		return (0);
+/*	caso 'big' seja diferente de 'little' iremos verificar algumas condicoes, porem, quando 'big' for igual a 'little' iremos retornar 'big' a partir da posi\ da ocorrencia de 'little' */
 	while (len-- && ft_strncmp(big, little, size) != 0)
 	{
 /*	caso 'little' possua mais caracteres que o parametro 'len' torna-se impossi\
