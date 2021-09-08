@@ -14,37 +14,28 @@
 /* ************************************************************ */
 
 /*
-** CONCATENAR DUAS STRINGS
+** CRIAR UMA NOVA STRING QUE SEJA O RESULTADO DA ITERACAO DE UMA STRING A UMA ** FUNCAO
 */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	size_t	j;
 	char	*str;
+	size_t	i;
 
-	i = 0;
-	j = 0;
-/*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' em sua totalidade */
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (s == 0 && f == 0)
+		return (NULL);
+/*	alocar memoria suficiente para que nossa nova string possa receber o conteudo da iteracao de nossa string s */
+	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (str == 0)
-		return (0);
-/*	copiar a primeira string em sua totalidade para nossa nova string */
-	while (s1[j] != '\0')
+		return (NULL);
+	i = 0;
+/*	caractere por caractere realizar a iteracao da funcao */
+	while (s[i] != '\0')
 	{
-		str[i] = s1[j];
+		str[i] = f(i, s[i]);
 		i++;
-		j++;
-	}
-	j = 0;
-/*	copiar a segunda string em sua totalidade para nossa nova string */
-	while (s2[j] != '\0')
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
 	}
 	str[i] = '\0';
 	return (str);

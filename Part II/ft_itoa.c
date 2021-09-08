@@ -39,7 +39,7 @@ char	*ft_strncpy(char *dest, const char *src, size_t n)
 }
 
 /*	funcao que retorna o tamanho de nossa string de inteiros */
-int	florinda(int n)
+int	ft_intsize(int n)
 {
 	size_t	i;
 
@@ -63,7 +63,7 @@ char	*ft_itoa(int n)
 	char	*str;
 
 /*	nosso size ira contar a quantidade de caracteres de nossa string do tipo int */
-	size = florinda(n);
+	size = ft_intsize(n);
 /*	iremos garantir uma alocacao "limpa" de memoria a nossa string */
 	str = ft_calloc(size, sizeof(char));
 	if (n == -2147483648)

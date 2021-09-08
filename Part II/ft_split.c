@@ -20,27 +20,29 @@
 
 #include "libft.h"
 
-/*	funcao para identificar a quantidade de caracteres finais de nossa string */
-int	ft_findchar(char const *set, char c)
+/*	funcao para identificar a quantidade de strigns a serem subdivididas */
+int    ft_findstr(char const *str, char c)
 {
-	size_t	i;
-	size_t	cont;
+    int        words;
+    int        control;
 
-	i = 0;
-	cont = 0;
-	while (set[i] != '\0')
-	{
-/*	dentro de nossa string temos que procurar por um caractere que seja difer\
-ente do caractere 'c' passado como parametro  */
-		while (set[i] == c)
-			i++;
-/*	caso o caractere encontrado seja diferente de 'c' e tambem diferente do fi\
-nal da palavra iremos incrimentar nosso contador */
-		if (set[i] != '\0')
-			cont++;
-		i++;
-	}
-	return (cont);
+    words = 0;
+    control = 0;
+    while (*str)
+    {
+/*	sempre que o proximo caractere de nossa string for diferente do caractere 'c' e nossa variavel de 'controle' for 0 sabemos que uma nova subdivisao de nossa string devera ser criada */
+        if (*str != c && control == 0)
+        {
+            control = 1;
+            words++;
+        }
+/*	quando o proximo caractere de nossa string for igual nosso caractere 'c', alteramos nossa variavel de 'controle' para 0, avisando o programa que estamos entrando novamente em uma subdivisao */
+        else if (*str == c)
+            control = 0;
+        str++;
+    }
+/*	retornar o total de subdivisoes possiveis */
+    return (words);
 }
 
 /*	funcao para duplicar nossa string ~#conferir ft_strdup */
@@ -70,7 +72,7 @@ char	**ft_split(char const *s, char c)
 	char	**str;
 
 /*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' apos cada divisao */
-	str = (char **)malloc(sizeof(char *) * (ft_findchar(s, c) + 1));
+	str = (char **)malloc(sizeof(char *) * (ft_findstr(s, c) + 1));
 	if (str == NULL)
 		return (NULL);
 	end = 0;

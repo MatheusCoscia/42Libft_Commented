@@ -20,45 +20,22 @@
 
 #include "libft.h"
 
-char	florentina(char const *set, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (set[i] != '\0')
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	size_t	i;
-	size_t	start;
-	size_t	end;
+	unsigned int	end;
+	char			*str;
 
-/*	procurar a primeira ocorrencia do caractere 'set' passado como parametro */
-	start = 0;
-	while (s1[start] != '\0' && florentina(set, s1[start]))
-		start++;
-/*	procurar a ultima ocorrencia do caractere 'set' passado como parametro */
+/*	caso nao exista nenhum conteudo em nossas strings devemos retornar NULL */
+	if (!s1 || !set)
+		return (NULL);
+/*	procurar a primeira ocorrencia do nosso caractere 'set' passado como parame/tro, deixando sua posicao "armazenada" dentro do nosso ponteiro */
+	while (ft_strchr(set, *s1) && *s1 != '\0')
+		s1++;
 	end = ft_strlen(s1);
-	while (florentina(set, s1[end - 1]))
+/*	procurar a ultima ocorrencia de nosso caractere 'set' passado como parame/tro, deixando sua posicao "armazenada" dentro de nossa variavel */
+	while (ft_strchr(set, s1[end]) && end != 0 )
 		end--;
-/*	alocar espaco na memoria para que nossa nova string receba o conteudo de 's1' */
-	str = (char *)malloc(sizeof(char) * (*s1 + (end - start + 1)));
-	i = 0;
-/*	copiar o conteudo da minha string 's1' a partir da posicao inicial para minha nova string */
-	while (start < end)
-	{
-		str[i] = s1[start];
-		i++;
-		start++;
-	}
-	str[i] = '\0';
+/*	copiar nossa string inicial para nossa string final */
+	str = ft_substr(s1, 0, end + 1);
 	return (str);
 }
