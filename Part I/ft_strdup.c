@@ -29,6 +29,8 @@ char	*ft_strdup(const char *s)
 		return (0);
 /*	alocar o espaço de memoria para que nossa nova string receba o conteudo de 's' em sua totalidade */
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (str == 0)
+		return (0);
 	while (s[i] != '\0')
 	{
 /*	copiar cada caractere de uma string para outra */
