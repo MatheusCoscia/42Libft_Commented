@@ -22,21 +22,21 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
 	char	*substr;
 
 	if (s == 0)
 		return (0);
-/*	alocar espaco na memoria para que nossa nova string receba o conteudo de 's1' */
-	substr = (char *)malloc(sizeof(char) * (ft_strlen(s) + (len + 1)));
-	i = 0;
-/*	copiar o conteudo da minha string 's1' a partir da posicao inicial para minha nova string */
-	while (i < len && s[start] != '\0')
-	{
-		substr[i] = s[start];
-		i++;
-		start++;
-	}
-	substr[i] = '\0';
+/*	caso nossa posicao inicial esteja alem ou no final de nossa string, iremos retornar " " */
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+/*	para realizar uma alocacao segura de memoria, caso o tamanho de nossa string 's' seja menor que 'len', iremos "alterar" o tamanho de len, fazendo com que ele passe a ter o tamanho de nossa string 's' */
+	if (ft_strlen(s) < len)
+		len = ft_strlen(s);
+/*	alocar memoria para nossa nova string */
+	substr = (char *)malloc(sizeof(char) * len + 1);
+	if (substr == 0)
+		return (0);
+/*	realizar a copia da string 's' para nossa nova string */
+	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
 }
