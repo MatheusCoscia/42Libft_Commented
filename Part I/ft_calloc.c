@@ -29,6 +29,6 @@ void	*ft_calloc(size_t memb, size_t size)
 	if (i == 0)
 		return (NULL);
 /*	utilizar a funcao bzero para preencher 'i' com caracteres nulos */
-	ft_bzero(i, memb);
+	ft_bzero(i, (memb * size));
 	return (i);
 }
